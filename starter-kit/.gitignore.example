@@ -1,0 +1,3 @@
+# Добавьте в .gitignore вашего проекта
+.claude/settings.local.json
+CLAUDE.local.md

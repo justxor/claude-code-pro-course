@@ -1,0 +1,7 @@
+{
+  "name": "team-toolkit",
+  "description": "Пример командного плагина: ревью безопасности, аудитор и защита файлов",
+  "version": "1.0.0",
+  "author": { "name": "Your Team" },
+  "license": "MIT"
+}
