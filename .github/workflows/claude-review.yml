@@ -1,0 +1,40 @@
+# Автоматическое ревью каждого PR с помощью Claude.
+# Требуется секрет ANTHROPIC_API_KEY (или CLAUDE_CODE_OAUTH_TOKEN — тогда замените параметр).
+# Без секрета job пропускается, а не падает.
+name: Claude PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
+
+jobs:
+  review:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write
+    steps:
+      - name: Check secret
+        id: secret
+        env:
+          KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: echo "present=$([ -n "$KEY" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+        if: steps.secret.outputs.present == 'true'
+        with:
+          fetch-depth: 0
+      - uses: anthropics/claude-code-action@v1
+        if: steps.secret.outputs.present == 'true'
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            Сделай ревью PR #${{ github.event.pull_request.number }} в репозитории ${{ github.repository }}.
+            Это учебный курс по Claude Code на русском. Проверь:
+            - фактическую точность утверждений о Claude Code (команды, флаги, форматы файлов);
+            - корректность JSON/YAML/bash в примерах и шаблонах;
+            - ясность и грамотность русского текста;
+            - что новые файлы добавлены в оглавления (README, labs/README.md, starter-kit/README.md).
+            Оставляй комментарии к конкретным строкам. Будь краток и не придирайся к вкусовщине.
+          claude_args: "--max-turns 12 --allowedTools Read,Grep,Glob,Bash(gh pr:*),Bash(git diff:*),mcp__github_inline_comment__create_inline_comment"

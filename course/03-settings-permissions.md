@@ -128,4 +128,6 @@ claude --model opus           # при запуске
 2. Запретите чтение `.env`. Попросите Claude прочитать `.env` — убедитесь, что отказано.
 3. Добавьте `.claude/settings.local.json` в `.gitignore`.
 
+🧪 Закрепите на практике: [лабораторная работа](../labs/lab-02-permissions.md)
+
 ➡️ Далее: [04. Workflow профи](04-workflow.md)

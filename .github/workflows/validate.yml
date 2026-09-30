@@ -1,0 +1,44 @@
+# Проверка репозитория на каждый push и PR: JSON, frontmatter, bash, ссылки, shellcheck.
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install pyyaml
+      - name: Validate structure, frontmatter and links
+        run: python3 scripts/validate.py
+      - name: ShellCheck
+        run: |
+          sudo apt-get install -y shellcheck >/dev/null
+          find . -name '*.sh' -not -path './.git/*' -print0 | xargs -0 shellcheck -S warning
+      - name: Smoke-test hooks
+        run: |
+          set -e
+          out=$(echo '{"tool_input":{"file_path":"app/.env"}}' | bash starter-kit/.claude/hooks/protect-files.sh 2>&1) && code=0 || code=$?
+          [ "$code" -eq 2 ] || { echo "protect-files.sh должен вернуть 2, вернул $code"; exit 1; }
+          echo '{"tool_input":{"file_path":"src/app.ts"}}' | bash starter-kit/.claude/hooks/protect-files.sh
+          out=$(echo '{"tool_input":{"command":"git push --force"}}' | bash plugin-example/scripts/block-dangerous.sh 2>&1) && code=0 || code=$?
+          [ "$code" -eq 2 ] || { echo "block-dangerous.sh должен вернуть 2, вернул $code"; exit 1; }
+          echo '{"tool_input":{"command":"npm test"}}' | bash plugin-example/scripts/block-dangerous.sh
+          echo "hooks OK"
+      - name: Test install.sh
+        run: |
+          tmp=$(mktemp -d)
+          bash install.sh "$tmp"
+          test -f "$tmp/.claude/settings.json"
+          test -f "$tmp/CLAUDE.md"
+          grep -qxF ".claude/settings.local.json" "$tmp/.gitignore"
