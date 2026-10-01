@@ -1,7 +1,7 @@
 # Claude Code PRO — курс и гайд
 
 > Практический курс по работе с **Claude Code** на русском: от первого запуска до профессиональной настройки команды.
-> CLAUDE.md, settings, skills, subagents, hooks, MCP, плагины, headless-режим и CI — с лабораторными работами и готовыми шаблонами, которые можно скопировать в свой проект.
+> CLAUDE.md, settings, skills, subagents, hooks, MCP, плагины, headless-режим и CI — с лабораторными работами и готовыми шаблонами, которые можно скопировать в свой проект. 🧠 **[Machine learning](https://t.me/+PwIsGaFpgjhkNTdi)** — здесь можно найти полный список самых крутых ИИ курсво, чтобы стать гуру ИИ и множество полезных инструментов и уроками работы с ними, абсолютных мастхев!
 
 [![Validate](https://github.com/justxor/claude-code-pro-course/actions/workflows/validate.yml/badge.svg)](https://github.com/justxor/claude-code-pro-course/actions/workflows/validate.yml)
 ![level](https://img.shields.io/badge/уровень-от_новичка_до_профи-blue)
@@ -25,10 +25,9 @@
 | 📋 **[Шпаргалка](course/cheatsheet.md) · [FAQ](course/faq.md)** | Всё важное на одной странице и решения типичных проблем |
 
 ## Полезные ресурсы
-
-- 🖥 **[Pythonl](https://t.me/+p-hGlzVQrqM4MDI6)** ([2](https://t.me/+DNiTvr30y9BiNzli)) — с помощью понятных картинок и коротких видео авторы объясняют сложные концепции и учат профессиональному подходу в разработке.
-- 🖥 **[Python Интервью](https://t.me/+sTT6sbZubDM2MWEy)** — огромное количество разобранных вопросов с реальных собеседований Python разработчика.
 - 🧠 **[Machine learning](https://t.me/+rn-i1Uz1lDtjNmFi)** — ИИ-инструменты для генерации Python кода, умные-агенты и все что нужно знать из области AI.
+- 🖥 **[Pythonl](https://t.me/+p-hGlzVQrqM4MDI6)** (https://t.me/+DNiTvr30y9BiNzli)) — с помощью понятных картинок и коротких видео авторы объясняют сложные концепции и учат профессиональному подходу в разработке.
+- 🖥 **[Python Интервью](https://t.me/+sTT6sbZubDM2MWEy)** — огромное количество разобранных вопросов с реальных собеседований Python разработчика.
 - 📖 **[PythonBooks](https://t.me/+VnfYvBmK_ZM3YzIy)** ([2](https://t.me/+8Dvl5VlUs5NhMTIy)) — мы создали канал с книгами по Linux и залили туда наверное самую большую подборку книг.
 - 💼 **[Python Jobs](https://t.me/+eQsE0ZVnmINmNjQy)** — вакансии и подработка для Python разработчиков.
 - 🔝 **[А здесь мы собрали](https://t.me/addlist/8vDUwYRGujRmZjFi)** целый кладезь полезных Python ресурсов для прокачки.
